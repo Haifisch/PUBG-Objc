@@ -85,4 +85,24 @@ NSString *Region;
     }];
 }
 
+// PUBG Version Info
+- (void)getVersionWithCompletion:(versionDictionary)completion {
+    NSURL *url = [NSURL URLWithString:@"https://api.playbattlegrounds.com/status"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/vnd.api+json" forHTTPHeaderField:@"Accept"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    [[session dataTaskWithRequest:request
+                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (!error) {
+                        NSDictionary *parsed = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                        if (!parsed[@"errors"]) {
+                            completion(parsed[@"data"][@"attributes"]);
+                        } else {
+                            completion(NULL);
+                        }
+                    }
+                }] resume];
+}
 @end

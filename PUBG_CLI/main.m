@@ -37,6 +37,11 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"Player not found!");
             }
         }];
+        
+        [api getVersionWithCompletion:^(NSDictionary *versionInfo) {
+            NSLog(@"Version === %@",versionInfo[@"version"]);
+            NSLog(@"Released === %@", versionInfo[@"releasedAt"]);
+        }];
         pause();
     }
     return 0;

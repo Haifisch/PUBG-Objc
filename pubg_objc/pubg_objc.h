@@ -32,4 +32,7 @@ typedef void(^playerResponse)(Player *);
 - (void)getPlayerByName:(NSString *)playerName withCompletion:(playerResponse)completion;
 - (void)getPlayerByID:(NSString *)identifier withCompletion:(playerResponse)completion;
 
+// PUBG Version Info
+typedef void(^versionDictionary)(NSDictionary *);
+- (void)getVersionWithCompletion:(versionDictionary)completion;
 @end
