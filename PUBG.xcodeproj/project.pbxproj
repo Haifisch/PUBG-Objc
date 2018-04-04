@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC2DE7522074896A00CACC32 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2DE7512074896A00CACC32 /* main.m */; };
+		FC2DE75F2074898400CACC32 /* pubg_objc.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2DE75E2074898400CACC32 /* pubg_objc.h */; };
+		FC2DE7612074898400CACC32 /* pubg_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2DE7602074898400CACC32 /* pubg_objc.m */; };
+		FC2DE7682074899300CACC32 /* libpubg_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2DE75C2074898400CACC32 /* libpubg_objc.a */; };
+		FC2DE76B20749D7E00CACC32 /* Player.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2DE76920749D7E00CACC32 /* Player.h */; };
+		FC2DE76C20749D7E00CACC32 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2DE76A20749D7E00CACC32 /* Player.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC2DE7652074898E00CACC32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC2DE7462074896A00CACC32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC2DE75B2074898400CACC32;
+			remoteInfo = pubg_objc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FC2DE74C2074896A00CACC32 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FC2DE74E2074896A00CACC32 /* PUBG */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PUBG; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2DE7512074896A00CACC32 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FC2DE75C2074898400CACC32 /* libpubg_objc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpubg_objc.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2DE75E2074898400CACC32 /* pubg_objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pubg_objc.h; sourceTree = "<group>"; };
+		FC2DE7602074898400CACC32 /* pubg_objc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pubg_objc.m; sourceTree = "<group>"; };
+		FC2DE76920749D7E00CACC32 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		FC2DE76A20749D7E00CACC32 /* Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC2DE74B2074896A00CACC32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC2DE7682074899300CACC32 /* libpubg_objc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC2DE7592074898400CACC32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC2DE7452074896A00CACC32 = {
+			isa = PBXGroup;
+			children = (
+				FC2DE7502074896A00CACC32 /* PUBG */,
+				FC2DE75D2074898400CACC32 /* pubg_objc */,
+				FC2DE74F2074896A00CACC32 /* Products */,
+				FC2DE7672074899300CACC32 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FC2DE74F2074896A00CACC32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC2DE74E2074896A00CACC32 /* PUBG */,
+				FC2DE75C2074898400CACC32 /* libpubg_objc.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC2DE7502074896A00CACC32 /* PUBG */ = {
+			isa = PBXGroup;
+			children = (
+				FC2DE7512074896A00CACC32 /* main.m */,
+			);
+			path = PUBG;
+			sourceTree = "<group>";
+		};
+		FC2DE75D2074898400CACC32 /* pubg_objc */ = {
+			isa = PBXGroup;
+			children = (
+				FC2DE75E2074898400CACC32 /* pubg_objc.h */,
+				FC2DE7602074898400CACC32 /* pubg_objc.m */,
+				FC2DE76920749D7E00CACC32 /* Player.h */,
+				FC2DE76A20749D7E00CACC32 /* Player.m */,
+			);
+			path = pubg_objc;
+			sourceTree = "<group>";
+		};
+		FC2DE7672074899300CACC32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FC2DE75A2074898400CACC32 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC2DE75F2074898400CACC32 /* pubg_objc.h in Headers */,
+				FC2DE76B20749D7E00CACC32 /* Player.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FC2DE74D2074896A00CACC32 /* PUBG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC2DE7552074896A00CACC32 /* Build configuration list for PBXNativeTarget "PUBG" */;
+			buildPhases = (
+				FC2DE74A2074896A00CACC32 /* Sources */,
+				FC2DE74B2074896A00CACC32 /* Frameworks */,
+				FC2DE74C2074896A00CACC32 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC2DE7662074898E00CACC32 /* PBXTargetDependency */,
+			);
+			name = PUBG;
+			productName = PUBG;
+			productReference = FC2DE74E2074896A00CACC32 /* PUBG */;
+			productType = "com.apple.product-type.tool";
+		};
+		FC2DE75B2074898400CACC32 /* pubg_objc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC2DE7622074898400CACC32 /* Build configuration list for PBXNativeTarget "pubg_objc" */;
+			buildPhases = (
+				FC2DE7582074898400CACC32 /* Sources */,
+				FC2DE7592074898400CACC32 /* Frameworks */,
+				FC2DE75A2074898400CACC32 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pubg_objc;
+			productName = pubg_objc;
+			productReference = FC2DE75C2074898400CACC32 /* libpubg_objc.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC2DE7462074896A00CACC32 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = haifisch;
+				TargetAttributes = {
+					FC2DE74D2074896A00CACC32 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					FC2DE75B2074898400CACC32 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = FC2DE7492074896A00CACC32 /* Build configuration list for PBXProject "PUBG" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FC2DE7452074896A00CACC32;
+			productRefGroup = FC2DE74F2074896A00CACC32 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC2DE74D2074896A00CACC32 /* PUBG */,
+				FC2DE75B2074898400CACC32 /* pubg_objc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC2DE74A2074896A00CACC32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC2DE7522074896A00CACC32 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC2DE7582074898400CACC32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC2DE76C20749D7E00CACC32 /* Player.m in Sources */,
+				FC2DE7612074898400CACC32 /* pubg_objc.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC2DE7662074898E00CACC32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC2DE75B2074898400CACC32 /* pubg_objc */;
+			targetProxy = FC2DE7652074898E00CACC32 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FC2DE7532074896A00CACC32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FC2DE7542074896A00CACC32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FC2DE7562074896A00CACC32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH664RVXEQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FC2DE7572074896A00CACC32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH664RVXEQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FC2DE7632074898400CACC32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH664RVXEQ;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FC2DE7642074898400CACC32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GH664RVXEQ;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC2DE7492074896A00CACC32 /* Build configuration list for PBXProject "PUBG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC2DE7532074896A00CACC32 /* Debug */,
+				FC2DE7542074896A00CACC32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC2DE7552074896A00CACC32 /* Build configuration list for PBXNativeTarget "PUBG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC2DE7562074896A00CACC32 /* Debug */,
+				FC2DE7572074896A00CACC32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC2DE7622074898400CACC32 /* Build configuration list for PBXNativeTarget "pubg_objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC2DE7632074898400CACC32 /* Debug */,
+				FC2DE7642074898400CACC32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC2DE7462074896A00CACC32 /* Project object */;
+}
