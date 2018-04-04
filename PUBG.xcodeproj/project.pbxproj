@@ -69,7 +69,7 @@
 		FC2DE7452074896A00CACC32 = {
 			isa = PBXGroup;
 			children = (
-				FC2DE7502074896A00CACC32 /* PUBG */,
+				FC2DE7502074896A00CACC32 /* PUBG_CLI */,
 				FC2DE75D2074898400CACC32 /* pubg_objc */,
 				FC2DE74F2074896A00CACC32 /* Products */,
 				FC2DE7672074899300CACC32 /* Frameworks */,
@@ -85,12 +85,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FC2DE7502074896A00CACC32 /* PUBG */ = {
+		FC2DE7502074896A00CACC32 /* PUBG_CLI */ = {
 			isa = PBXGroup;
 			children = (
 				FC2DE7512074896A00CACC32 /* main.m */,
 			);
-			path = PUBG;
+			path = PUBG_CLI;
 			sourceTree = "<group>";
 		};
 		FC2DE75D2074898400CACC32 /* pubg_objc */ = {
