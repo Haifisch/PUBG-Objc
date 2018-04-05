@@ -59,18 +59,23 @@ int main(int argc, const char * argv[]) {
         
         // Retrieve a match by its ID
         [api getMatchByID:@"c78af09f-91b1-417a-b433-0520e5768e7b" withCompletion:^(Match *response) {
+            print_seperator();
+            printf("Match ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("Match mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("Match duration === %i (~%d minutes)\n", (int)response.duration, ((int)response.duration/60));
+            print_seperator();
             PlayerStats *stats = [response getStatsForPlayer:@"xxxPabloEscoxxx"];
             print_seperator();
             printf("Stats for %s in match\n", [stats.playerName cStringUsingEncoding:NSUTF8StringEncoding]);
-            printf("Win place === %i\n", (int)stats.winPlace);
-            printf("Kill place === %i\n", (int)stats.killPlace);
+            printf("Time survived === %i\n", (int)stats.timeSurvived);
+            printf("Win place === %i/100\n", (int)stats.winPlace);
+            printf("Kill place === %i/100\n", (int)stats.killPlace);
             printf("Kills === %i\n", (int)stats.kills);
             printf("Assists === %i\n", (int)stats.assists);
             printf("DBNOs === %i\n", (int)stats.DBNOs);
             printf("Damage dealt === %f\n", stats.damageDealt);
             printf("Heals used === %i\n", (int)stats.heals);
             printf("Boosts used === %i\n", (int)stats.boostsUsed);
-            printf("Time survived === %i\n", (int)stats.timeSurvived);
             printf("Death type === %s\n", [stats.deathType cStringUsingEncoding:NSUTF8StringEncoding]);
             print_seperator();
         }];
