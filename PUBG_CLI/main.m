@@ -50,7 +50,7 @@ void player_query_tests() {
 void match_query_tests() {
     // Retrieve a match by its ID
     __block Match *foundMatch;
-    [libPUBG getMatchByID:@"c78af09f-91b1-417a-b433-0520e5768e7b" withCompletion:^(Match *response) {
+    [libPUBG getMatchByID:@"a29a29b5-8835-4537-aca7-c86deb81adae" withCompletion:^(Match *response) {
         if (response.foundMatch) {
             foundMatch = response;
             print_seperator();
@@ -61,7 +61,7 @@ void match_query_tests() {
             // Get player stats
             PlayerStats *stats = [foundMatch getStatsForPlayer:@"xxxPabloEscoxxx"];
             printf("\tStats for %s in match %s\n", [stats.playerName cStringUsingEncoding:NSUTF8StringEncoding], [foundMatch.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
-            printf("\tTime survived === %i\n", (int)stats.timeSurvived);
+            printf("\tTime survived === %i (~%d minutes)\n", (int)stats.timeSurvived, ((int)stats.timeSurvived/60));
             printf("\tWin place === %i/100\n", (int)stats.winPlace);
             printf("\tKill place === %i/100\n", (int)stats.killPlace);
             printf("\tKills === %i\n", (int)stats.kills);
@@ -88,7 +88,7 @@ void match_query_tests() {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Enter your PUBG API key here (see https://developer.playbattlegrounds.com for more details)
-        NSString *key = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDBkYmU1MC0xOGUzLTAxMzYtOTYwOC02MWFjOTE3MDJiMmEiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyNzAxNTY4LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InBhYmxvcy1wdWJnIiwic2NvcGUiOiJjb21tdW5pdHkiLCJsaW1pdCI6MTB9.yn6V89y_7g8Z3K-VfpXd1jkEgPCwCRHVbdM7WVwC15s";
+        NSString *key = @"";
         
         // Init library
         libPUBG = [[PUBG alloc] initWithAPIKey:key andRegion:kPUBGRegionNA];
