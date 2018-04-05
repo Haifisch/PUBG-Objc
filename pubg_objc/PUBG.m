@@ -6,17 +6,16 @@
 //  Copyright © 2018 haifisch. All rights reserved.
 //
 
-#import "pubg_objc.h"
+#import "PUBG.h"
 
 NSString *API_KEY;
-NSString *Region;
 
-@implementation pubg_objc
+@implementation PUBG
 // Initializers
 -(id)init {
     if (self = [super init]) {
         API_KEY = nil;
-        
+        self.Region = nil;
     }
     return self;
 }
@@ -25,7 +24,7 @@ NSString *Region;
     self = [self init];
     if (self) {
         API_KEY = key;
-        Region = region;
+        self.Region = region;
     }
     return self;
 }
@@ -53,7 +52,7 @@ NSString *Region;
 
 // HTTP Requests
 - (void)makeRequestWithEndpoint:(NSString *)endpoint withCompletion:(httpResponse)completion {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.playbattlegrounds.com/shards/%@/%@", Region, endpoint]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.playbattlegrounds.com/shards/%@/%@", self.Region, endpoint]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/vnd.api+json" forHTTPHeaderField:@"Accept"];
@@ -122,5 +121,6 @@ NSString *Region;
         completion(obj);
     }];
 }
+
 
 @end

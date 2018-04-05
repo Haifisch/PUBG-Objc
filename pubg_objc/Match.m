@@ -13,7 +13,7 @@
 - (PlayerStats *)getStatsForPlayer:(NSString *)playerName {
     PlayerStats *stats = [[PlayerStats alloc] init];
     for (int i = 0; i < self.playersInMatch.count; i++) {
-        if ([self.playersInMatch[i][@"attributes"][@"stats"][@"name"] isEqualToString:playerName]) {
+        if ([self.playersInMatch[i][@"type"] isEqualToString:@"participant"] && [self.playersInMatch[i][@"attributes"][@"stats"][@"name"] isEqualToString:playerName]) {
             stats.playerName = playerName;
             stats.DBNOs = [self.playersInMatch[i][@"attributes"][@"stats"][@"DBNOs"] integerValue];
             stats.assists = [self.playersInMatch[i][@"attributes"][@"stats"][@"assists"] integerValue];

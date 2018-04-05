@@ -20,7 +20,9 @@
 #define kPUBGRegionSA @"pc-sa"
 #define kPUBGRegionAS @"pc-as"
 
-@interface pubg_objc : NSObject
+@interface PUBG : NSObject
+
+@property (nonatomic, assign) NSString *Region;
 
 // Completions
 typedef void(^versionDictionary)(NSDictionary *);
