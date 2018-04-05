@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Player : NSObject
+
 @property (nonatomic, assign) BOOL foundPlayer;
 @property (nonatomic, assign) NSString *playerIdentifier;
 @property (nonatomic, assign) NSString *playerName;

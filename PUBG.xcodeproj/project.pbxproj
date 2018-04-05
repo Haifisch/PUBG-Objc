@@ -13,6 +13,10 @@
 		FC2DE7682074899300CACC32 /* libpubg_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2DE75C2074898400CACC32 /* libpubg_objc.a */; };
 		FC2DE76B20749D7E00CACC32 /* Player.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2DE76920749D7E00CACC32 /* Player.h */; };
 		FC2DE76C20749D7E00CACC32 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2DE76A20749D7E00CACC32 /* Player.m */; };
+		FC9FD02A2075CD26006D71EF /* Match.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9FD0282075CD26006D71EF /* Match.h */; };
+		FC9FD02B2075CD26006D71EF /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FD0292075CD26006D71EF /* Match.m */; };
+		FC9FD02E2075D228006D71EF /* PlayerStats.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9FD02C2075D228006D71EF /* PlayerStats.h */; };
+		FC9FD02F2075D228006D71EF /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FD02D2075D228006D71EF /* PlayerStats.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		FC2DE7602074898400CACC32 /* pubg_objc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pubg_objc.m; sourceTree = "<group>"; };
 		FC2DE76920749D7E00CACC32 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		FC2DE76A20749D7E00CACC32 /* Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		FC9FD0282075CD26006D71EF /* Match.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		FC9FD0292075CD26006D71EF /* Match.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		FC9FD02C2075D228006D71EF /* PlayerStats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerStats.h; sourceTree = "<group>"; };
+		FC9FD02D2075D228006D71EF /* PlayerStats.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerStats.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,10 @@
 			children = (
 				FC2DE75E2074898400CACC32 /* pubg_objc.h */,
 				FC2DE7602074898400CACC32 /* pubg_objc.m */,
+				FC9FD0282075CD26006D71EF /* Match.h */,
+				FC9FD0292075CD26006D71EF /* Match.m */,
+				FC9FD02C2075D228006D71EF /* PlayerStats.h */,
+				FC9FD02D2075D228006D71EF /* PlayerStats.m */,
 				FC2DE76920749D7E00CACC32 /* Player.h */,
 				FC2DE76A20749D7E00CACC32 /* Player.m */,
 			);
@@ -118,8 +130,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9FD02A2075CD26006D71EF /* Match.h in Headers */,
 				FC2DE75F2074898400CACC32 /* pubg_objc.h in Headers */,
 				FC2DE76B20749D7E00CACC32 /* Player.h in Headers */,
+				FC9FD02E2075D228006D71EF /* PlayerStats.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9FD02F2075D228006D71EF /* PlayerStats.m in Sources */,
+				FC9FD02B2075CD26006D71EF /* Match.m in Sources */,
 				FC2DE76C20749D7E00CACC32 /* Player.m in Sources */,
 				FC2DE7612074898400CACC32 /* pubg_objc.m in Sources */,
 			);

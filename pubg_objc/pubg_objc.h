@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "Match.h"
 
 // PC Regions
 #define kPUBGRegionKAKAO @"pc-kakao"
@@ -21,18 +22,22 @@
 
 @interface pubg_objc : NSObject
 
+// Completions
+typedef void(^versionDictionary)(NSDictionary *);
+typedef void(^httpResponse)(NSDictionary *);
+typedef void(^playerResponse)(Player *);
+typedef void(^matchResponse)(Match *);
+
 // Initializers
 - (id)initWithAPIKey:(NSString *)key andRegion:(NSString *)region;
 
-// HTTP Requests
-typedef void(^httpResponse)(NSDictionary *);
-
 // Player Queries
-typedef void(^playerResponse)(Player *);
 - (void)getPlayerByName:(NSString *)playerName withCompletion:(playerResponse)completion;
 - (void)getPlayerByID:(NSString *)identifier withCompletion:(playerResponse)completion;
 
+// Match Queries
+- (void)getMatchByID:(NSString *)matchID withCompletion:(matchResponse)completion;
+
 // PUBG Version Info
-typedef void(^versionDictionary)(NSDictionary *);
 - (void)getVersionWithCompletion:(versionDictionary)completion;
 @end

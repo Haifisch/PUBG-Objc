@@ -30,6 +30,27 @@ NSString *Region;
     return self;
 }
 
+// PUBG Version Info
+- (void)getVersionWithCompletion:(versionDictionary)completion {
+    NSURL *url = [NSURL URLWithString:@"https://api.playbattlegrounds.com/status"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/vnd.api+json" forHTTPHeaderField:@"Accept"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    [[session dataTaskWithRequest:request
+                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (!error) {
+                        NSDictionary *parsed = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                        if (!parsed[@"errors"]) {
+                            completion(parsed[@"data"][@"attributes"]);
+                        } else {
+                            completion(NULL);
+                        }
+                    }
+                }] resume];
+}
+
 // HTTP Requests
 - (void)makeRequestWithEndpoint:(NSString *)endpoint withCompletion:(httpResponse)completion {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.playbattlegrounds.com/shards/%@/%@", Region, endpoint]];
@@ -85,24 +106,21 @@ NSString *Region;
     }];
 }
 
-// PUBG Version Info
-- (void)getVersionWithCompletion:(versionDictionary)completion {
-    NSURL *url = [NSURL URLWithString:@"https://api.playbattlegrounds.com/status"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/vnd.api+json" forHTTPHeaderField:@"Accept"];
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    [[session dataTaskWithRequest:request
-                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    if (!error) {
-                        NSDictionary *parsed = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                        if (!parsed[@"errors"]) {
-                            completion(parsed[@"data"][@"attributes"]);
-                        } else {
-                            completion(NULL);
-                        }
-                    }
-                }] resume];
+// Match Queries
+- (void)getMatchByID:(NSString *)matchID withCompletion:(matchResponse)completion {
+    [self makeRequestWithEndpoint:[NSString stringWithFormat:@"matches/%@", matchID] withCompletion:^(id response) {
+        if (response == NULL) {
+            completion(NULL);
+            return;
+        }
+        Match *obj = [[Match alloc] init];
+        obj.playersInMatch = response[@"included"];
+        obj.gameMode = response[@"data"][@"attributes"][@"gameMode"];
+        obj.timestamp = response[@"data"][@"attributes"][@"createdAt"];
+        obj.duration = [response[@"data"][@"attributes"][@"duration"] integerValue];
+        obj.matchID = matchID;
+        completion(obj);
+    }];
 }
+
 @end
