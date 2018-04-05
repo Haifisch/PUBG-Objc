@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Player.h"
 #import "Match.h"
+#import "Telemetry.h"
 
 // PC Regions
 #define kPUBGRegionKAKAO @"pc-kakao"

@@ -17,6 +17,8 @@
 		FC9FD02B2075CD26006D71EF /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FD0292075CD26006D71EF /* Match.m */; };
 		FC9FD02E2075D228006D71EF /* PlayerStats.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9FD02C2075D228006D71EF /* PlayerStats.h */; };
 		FC9FD02F2075D228006D71EF /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FD02D2075D228006D71EF /* PlayerStats.m */; };
+		FC9FD0322076CB5A006D71EF /* Telemetry.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9FD0302076CB5A006D71EF /* Telemetry.h */; };
+		FC9FD0332076CB5A006D71EF /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FD0312076CB5A006D71EF /* Telemetry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		FC9FD0292075CD26006D71EF /* Match.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		FC9FD02C2075D228006D71EF /* PlayerStats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerStats.h; sourceTree = "<group>"; };
 		FC9FD02D2075D228006D71EF /* PlayerStats.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerStats.m; sourceTree = "<group>"; };
+		FC9FD0302076CB5A006D71EF /* Telemetry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Telemetry.h; sourceTree = "<group>"; };
+		FC9FD0312076CB5A006D71EF /* Telemetry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				FC2DE7602074898400CACC32 /* PUBG.m */,
 				FC9FD0282075CD26006D71EF /* Match.h */,
 				FC9FD0292075CD26006D71EF /* Match.m */,
+				FC9FD0302076CB5A006D71EF /* Telemetry.h */,
+				FC9FD0312076CB5A006D71EF /* Telemetry.m */,
 				FC9FD02C2075D228006D71EF /* PlayerStats.h */,
 				FC9FD02D2075D228006D71EF /* PlayerStats.m */,
 				FC2DE76920749D7E00CACC32 /* Player.h */,
@@ -130,6 +136,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9FD0322076CB5A006D71EF /* Telemetry.h in Headers */,
 				FC9FD02A2075CD26006D71EF /* Match.h in Headers */,
 				FC2DE75F2074898400CACC32 /* PUBG.h in Headers */,
 				FC2DE76B20749D7E00CACC32 /* Player.h in Headers */,
@@ -223,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9FD0332076CB5A006D71EF /* Telemetry.m in Sources */,
 				FC9FD02F2075D228006D71EF /* PlayerStats.m in Sources */,
 				FC9FD02B2075CD26006D71EF /* Match.m in Sources */,
 				FC2DE76C20749D7E00CACC32 /* Player.m in Sources */,

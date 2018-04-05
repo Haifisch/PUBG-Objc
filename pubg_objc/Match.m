@@ -37,7 +37,8 @@
 // This probably needs some revision, seems really hacky
 - (NSArray *)getAllPlayersInTeamWith:(NSString *)playerName {
     NSMutableArray *groupIDs = [[NSMutableArray alloc] init];
-    NSMutableArray *groupNames = [[NSMutableArray alloc] init];
+    NSMutableArray *playerNames = [[NSMutableArray alloc] init];
+    NSMutableArray *playerIDs = [[NSMutableArray alloc] init];
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     NSString *playerRosterID = NULL;
     NSString *groupRosterID = NULL;
@@ -71,12 +72,16 @@
     for (int q = 0; q < groupIDs.count; q++) {
         for (int f = 0; f < self.playersInMatch.count; f++) {
             if ([self.playersInMatch[f][@"type"] isEqualToString:@"participant"] && [self.playersInMatch[f][@"id"] isEqual:groupIDs[q]]) {
-                [groupNames addObject:self.playersInMatch[f][@"attributes"][@"stats"][@"name"]];
+                [playerNames addObject:self.playersInMatch[f][@"attributes"][@"stats"][@"name"]];
+                [playerIDs addObject:self.playersInMatch[f][@"attributes"][@"stats"][@"playerId"]];
                 break;
             }
         }
     }
-    [ret addObject:[groupNames copy]];
+    [ret addObject:[playerNames copy]];
+    [ret addObject:[playerIDs copy]];
     return ret;
 }
+
+
 @end
