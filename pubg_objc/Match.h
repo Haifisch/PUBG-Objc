@@ -10,6 +10,7 @@
 #import "PlayerStats.h"
 @interface Match : NSObject
 
+@property (nonatomic, assign) BOOL foundMatch;
 @property (nonatomic, assign) NSString *matchID;
 @property (nonatomic, assign) NSString *gameMode;
 @property (nonatomic, assign) NSString *timestamp;
@@ -18,5 +19,5 @@
 
 // Player stats in match 
 - (PlayerStats *)getStatsForPlayer:(NSString *)playerName;
-
+- (NSArray *)getAllPlayersInTeamWith:(NSString *)playerName;
 @end

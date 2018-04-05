@@ -113,6 +113,7 @@ NSString *API_KEY;
             return;
         }
         Match *obj = [[Match alloc] init];
+        obj.foundMatch = YES;
         obj.playersInMatch = response[@"included"];
         obj.gameMode = response[@"data"][@"attributes"][@"gameMode"];
         obj.timestamp = response[@"data"][@"attributes"][@"createdAt"];
@@ -121,6 +122,7 @@ NSString *API_KEY;
         completion(obj);
     }];
 }
+
 
 
 @end

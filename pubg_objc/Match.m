@@ -33,4 +33,50 @@
     return stats;
 }
 
+
+// This probably needs some revision, seems really hacky
+- (NSArray *)getAllPlayersInTeamWith:(NSString *)playerName {
+    NSMutableArray *groupIDs = [[NSMutableArray alloc] init];
+    NSMutableArray *groupNames = [[NSMutableArray alloc] init];
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    NSString *playerRosterID = NULL;
+    NSString *groupRosterID = NULL;
+    for (int i = 0; i < self.playersInMatch.count; i++) {
+        if ([self.playersInMatch[i][@"type"] isEqualToString:@"participant"] && [self.playersInMatch[i][@"attributes"][@"stats"][@"name"] isEqualToString:playerName]) {
+            playerRosterID = self.playersInMatch[i][@"id"];
+            break;
+        }
+    }
+    if (playerRosterID == NULL) {
+        printf("\tFailed to match an ID to the requested player name!\n");
+        return NULL;
+    }
+    BOOL foundGroup = false;
+    for (int i = 0; (i < self.playersInMatch.count) && !foundGroup; i++) {
+        if ([self.playersInMatch[i][@"type"] isEqualToString:@"roster"]) {
+            NSArray *currentRoster = self.playersInMatch[i][@"relationships"][@"participants"][@"data"];
+            for (int b = 0; b < currentRoster.count; b++) {
+                if ([currentRoster[b][@"id"] isEqualToString:playerRosterID]) {
+                    groupRosterID = self.playersInMatch[i][@"id"];
+                    foundGroup = true;
+                    for (int z = 0; z < currentRoster.count; z++) {
+                        [groupIDs addObject:currentRoster[z][@"id"]];
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    [ret addObject:[groupIDs copy]];
+    for (int q = 0; q < groupIDs.count; q++) {
+        for (int f = 0; f < self.playersInMatch.count; f++) {
+            if ([self.playersInMatch[f][@"type"] isEqualToString:@"participant"] && [self.playersInMatch[f][@"id"] isEqual:groupIDs[q]]) {
+                [groupNames addObject:self.playersInMatch[f][@"attributes"][@"stats"][@"name"]];
+                break;
+            }
+        }
+    }
+    [ret addObject:[groupNames copy]];
+    return ret;
+}
 @end

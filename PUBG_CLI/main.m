@@ -27,7 +27,7 @@ void player_query_tests() {
             printf("\t#1 Match ID === %s\n", [response.playerMatches[0][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
             print_seperator();
         } else {
-            printf("\tPlayer not found!");
+            printf("\tPlayer not found!\n");
         }
     }];
     
@@ -42,41 +42,53 @@ void player_query_tests() {
             printf("\t#1 Match ID === %s\n", [response.playerMatches[0][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
             print_seperator();
         } else {
-            printf("\tPlayer not found!");
+            printf("\tPlayer not found!\n");
         }
     }];
 }
 
 void match_query_tests() {
     // Retrieve a match by its ID
+    __block Match *foundMatch;
     [libPUBG getMatchByID:@"c78af09f-91b1-417a-b433-0520e5768e7b" withCompletion:^(Match *response) {
-        print_seperator();
-        printf("\tMatch found!\n");
-        printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
-        printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
-        printf("\tMatch duration === %i (~%d minutes)\n", (int)response.duration, ((int)response.duration/60));
-        print_seperator();
-        PlayerStats *stats = [response getStatsForPlayer:@"xxxPabloEscoxxx"];
-        print_seperator();
-        printf("\tStats for %s in match %s\n", [stats.playerName cStringUsingEncoding:NSUTF8StringEncoding], [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
-        printf("\tTime survived === %i\n", (int)stats.timeSurvived);
-        printf("\tWin place === %i/100\n", (int)stats.winPlace);
-        printf("\tKill place === %i/100\n", (int)stats.killPlace);
-        printf("\tKills === %i\n", (int)stats.kills);
-        printf("\tAssists === %i\n", (int)stats.assists);
-        printf("\tDBNOs === %i\n", (int)stats.DBNOs);
-        printf("\tDamage dealt === %f\n", stats.damageDealt);
-        printf("\tHeals used === %i\n", (int)stats.heals);
-        printf("\tBoosts used === %i\n", (int)stats.boostsUsed);
-        printf("\tDeath type === %s\n", [stats.deathType cStringUsingEncoding:NSUTF8StringEncoding]);
-        print_seperator();
+        if (response.foundMatch) {
+            foundMatch = response;
+            print_seperator();
+            printf("\tMatch found!\n");
+            printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch duration === %i (~%d minutes)\n\n", (int)response.duration, ((int)response.duration/60));
+            // Get player stats
+            PlayerStats *stats = [foundMatch getStatsForPlayer:@"xxxPabloEscoxxx"];
+            printf("\tStats for %s in match %s\n", [stats.playerName cStringUsingEncoding:NSUTF8StringEncoding], [foundMatch.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tTime survived === %i\n", (int)stats.timeSurvived);
+            printf("\tWin place === %i/100\n", (int)stats.winPlace);
+            printf("\tKill place === %i/100\n", (int)stats.killPlace);
+            printf("\tKills === %i\n", (int)stats.kills);
+            printf("\tAssists === %i\n", (int)stats.assists);
+            printf("\tDBNOs === %i\n", (int)stats.DBNOs);
+            printf("\tDamage dealt === %f\n", stats.damageDealt);
+            printf("\tHeals used === %i\n", (int)stats.heals);
+            printf("\tBoosts used === %i\n", (int)stats.boostsUsed);
+            printf("\tDeath type === %s\n\n", [stats.deathType cStringUsingEncoding:NSUTF8StringEncoding]);
+            if ([foundMatch.gameMode isEqualToString:@"squad"] || [foundMatch.gameMode isEqualToString:@"duo"]) {
+                NSArray *team = [foundMatch getAllPlayersInTeamWith:@"xxxPabloEscoxxx"][1]; // Index 0 holds the IDs, 1 holds the nicknames
+                printf("\tTeammates in game;\n");
+                for (int i = 0; i < team.count; i++) {
+                    printf("\t\t%s\n", [team[i] cStringUsingEncoding:NSUTF8StringEncoding]);
+                }
+            }
+            print_seperator();
+        } else {
+            printf("\tMatch not found!\n");
+        }
     }];
 }
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Enter your PUBG API key here (see https://developer.playbattlegrounds.com for more details)
-        NSString *key = @"";
+        NSString *key = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDBkYmU1MC0xOGUzLTAxMzYtOTYwOC02MWFjOTE3MDJiMmEiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyNzAxNTY4LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InBhYmxvcy1wdWJnIiwic2NvcGUiOiJjb21tdW5pdHkiLCJsaW1pdCI6MTB9.yn6V89y_7g8Z3K-VfpXd1jkEgPCwCRHVbdM7WVwC15s";
         
         // Init library
         libPUBG = [[PUBG alloc] initWithAPIKey:key andRegion:kPUBGRegionNA];
