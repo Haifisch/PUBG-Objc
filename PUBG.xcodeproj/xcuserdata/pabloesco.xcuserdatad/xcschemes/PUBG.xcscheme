@@ -63,28 +63,36 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-m"
+            argument = "-key"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-i"
+            argument = "&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDBkYmU1MC0xOGUzLTAxMzYtOTYwOC02MWFjOTE3MDJiMmEiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyNzAxNTY4LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InBhYmxvcy1wdWJnIiwic2NvcGUiOiJjb21tdW5pdHkiLCJsaW1pdCI6MTB9.yn6V89y_7g8Z3K-VfpXd1jkEgPCwCRHVbdM7WVwC15s&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "768780c0-50d1-475e-8f80-3b62b9f65c5f"
+            argument = "-findMatch"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-s"
-            isEnabled = "NO">
+            argument = "-match"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "SOOBS420"
-            isEnabled = "NO">
+            argument = "&quot;dc0e801d-1198-4ff1-920a-050ffdfbbc38&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-t"
-            isEnabled = "NO">
+            argument = "-playerName"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;SOOBS420&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-extra"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
