@@ -29,6 +29,10 @@ NSString *API_KEY;
     return self;
 }
 
+- (void)setRegion:(NSString *)Region {
+    self.Region = Region;
+}
+
 // PUBG Version Info
 - (void)getVersionWithCompletion:(versionDictionary)completion {
     NSURL *url = [NSURL URLWithString:@"https://api.playbattlegrounds.com/status"];

@@ -7,7 +7,53 @@ Objective-C Library for the PUBG API
 - [ ] Parsing telemetry data
 
 ## Objective-C Library Documentation 
-Coming eta #son!
+###### Installation
+1. Simply drag and drop the source files in 'pubg_objc' into your project.
+2. Alternatively, open the provided Xcode project and build the static library. Drag and drop the compiled library into your project and link against it. Be sure to copy over the associated header files as well. 
+
+###### PUBG Class
+**Region Macros**
+```objc
+kPUBGRegionKAKAO @"pc-kakao"
+kPUBGRegionKRJP @"pc-krjp"
+kPUBGRegionSEA @"pc-sea"
+kPUBGRegionNA @"pc-na"
+kPUBGRegionEU @"pc-eu"
+kPUBGRegionOC @"pc-oc"
+kPUBGRegionSA @"pc-sa"
+kPUBGRegionAS @"pc-as"
+```
+
+**Methods**
+```objc
+// Initialize with an API key and a selected target region.
+- (id)initWithAPIKey:(NSString *)key andRegion:(NSString *)region;
+// Change the target region.
+- (void)setRegion:(NSString *)Region;
+// Get a player by their PUBG name, returns a Player object.
+- (void)getPlayerByName:(NSString *)playerName withCompletion:(playerResponse)completion;
+// Get a player by their PUBG identifier, returns a Player object.
+- (void)getPlayerByID:(NSString *)identifier withCompletion:(playerResponse)completion;
+// Get a match by its identifier, returns a Match object
+- (void)getMatchByID:(NSString *)matchID withCompletion:(matchResponse)completion;
+// Get the current PUBG API version info
+- (void)getVersionWithCompletion:(versionDictionary)completion;
+```
+
+###### Player Class
+**Properties**
+```objc
+// If the player was sucessfully found, will be set to 'true'.
+@property (nonatomic, assign) BOOL foundPlayer;
+// The player's PUBG identifier.
+@property (nonatomic, assign) NSString *playerIdentifier;
+// The player's PUBG nickname.
+@property (nonatomic, assign) NSString *playerName;
+// PUBG API update timestamp.
+@property (nonatomic, assign) NSString *playerUpdateTimestamp;
+// All available matches for the player, contains an array of match identifiers.
+@property (nonatomic, assign) NSArray *playerMatches;
+```
 
 ## PUBG CLI 
 ###### Available commands;

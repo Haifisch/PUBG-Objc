@@ -31,16 +31,19 @@ typedef void(^httpResponse)(NSDictionary *);
 typedef void(^playerResponse)(Player *);
 typedef void(^matchResponse)(Match *);
 
-// Initializers
+// Initialize with an API key and a selected target region.
 - (id)initWithAPIKey:(NSString *)key andRegion:(NSString *)region;
+// Change the target region.
+- (void)setRegion:(NSString *)Region;
 
-// Player Queries
+// Get a player by their PUBG name, returns a Player object.
 - (void)getPlayerByName:(NSString *)playerName withCompletion:(playerResponse)completion;
+// Get a player by their PUBG identifier, returns a Player object.
 - (void)getPlayerByID:(NSString *)identifier withCompletion:(playerResponse)completion;
 
-// Match Queries
+// Get a match by its identifier, returns a Match object
 - (void)getMatchByID:(NSString *)matchID withCompletion:(matchResponse)completion;
 
-// PUBG Version Info
+// Get the current PUBG API version info
 - (void)getVersionWithCompletion:(versionDictionary)completion;
 @end
