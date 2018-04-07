@@ -29,7 +29,7 @@ NSString *API_KEY;
     return self;
 }
 
-- (void)setRegion:(NSString *)Region {
+- (void)changeRegion:(NSString *)Region {
     self.Region = Region;
 }
 

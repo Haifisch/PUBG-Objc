@@ -33,8 +33,9 @@ typedef void(^matchResponse)(Match *);
 
 // Initialize with an API key and a selected target region.
 - (id)initWithAPIKey:(NSString *)key andRegion:(NSString *)region;
+
 // Change the target region.
-- (void)setRegion:(NSString *)Region;
+- (void)changeRegion:(NSString *)Region;
 
 // Get a player by their PUBG name, returns a Player object.
 - (void)getPlayerByName:(NSString *)playerName withCompletion:(playerResponse)completion;
