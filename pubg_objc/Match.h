@@ -21,4 +21,7 @@
 - (PlayerStats *)getStatsForPlayer:(NSString *)playerName;
 - (NSArray *)getAllPlayersInTeamWith:(NSString *)playerName;
 
+// Telemetry info
+- (NSString *)getTelemetryDownloadURLForMatch:(Match*)match;
+
 @end

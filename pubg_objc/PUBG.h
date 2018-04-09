@@ -47,4 +47,12 @@ typedef void(^matchResponse)(Match *);
 
 // Get the current PUBG API version info
 - (void)getVersionWithCompletion:(versionDictionary)completion;
+
+// Get a NSDate object for a string, helps a bit cause the timestamp format changes slightly around the API
+- (NSDate *)dateForString:(NSString *)timestamp;
+
+// Common name resolvers
+- (NSString *)commonNameForItem:(NSString *)itemID;
+- (NSString *)commonNameForDamageCauser:(NSString *)damageCauser;
+
 @end

@@ -127,6 +127,33 @@ NSString *API_KEY;
     }];
 }
 
+// Get a NSDate object for a string
+- (NSDate *)dateForString:(NSString *)timestamp {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZZZZZ"];
+    if ([dateFormat dateFromString:timestamp]) {
+        return [dateFormat dateFromString:timestamp];
+    }
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    if ([dateFormat dateFromString:timestamp]) {
+        return [dateFormat dateFromString:timestamp];
+    }
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SS'Z'"];
+    if ([dateFormat dateFromString:timestamp]) {
+        return [dateFormat dateFromString:timestamp];
+    }
+    return NULL;
+}
 
+// Common name resolvers
+- (NSString *)commonNameForItem:(NSString *)itemID {
+    NSDictionary *dict = kPUBG_Item_Names;
+    return (NSString *)dict[itemID];
+}
+
+- (NSString *)commonNameForDamageCauser:(NSString *)damageCauser {
+    NSDictionary *dict = kPUBG_Damage_Causer_Names;
+    return (NSString *)dict[damageCauser];
+}
 
 @end

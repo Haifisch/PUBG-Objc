@@ -67,11 +67,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDBkYmU1MC0xOGUzLTAxMzYtOTYwOC02MWFjOTE3MDJiMmEiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyNzAxNTY4LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InBhYmxvcy1wdWJnIiwic2NvcGUiOiJjb21tdW5pdHkiLCJsaW1pdCI6MTB9.yn6V89y_7g8Z3K-VfpXd1jkEgPCwCRHVbdM7WVwC15s&quot;"
+            argument = "&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MjUxM2Y1MC0xYzUyLTAxMzYtMmM1YS01OWY1YTk2ZWY4YTciLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIzMDc4OTE3LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InB1Ymctb2JqYyIsInNjb3BlIjoiY29tbXVuaXR5IiwibGltaXQiOjEwfQ.Ewkj7C4tO2iELjMU-V1fSM8o-wy2kmwug-e0jV6eQ5o&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-findMatch"
+            argument = "-telemetryPlayKills"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -79,7 +79,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;dc0e801d-1198-4ff1-920a-050ffdfbbc38&quot;"
+            argument = "&quot;f92af3a8-f26d-40a7-bbd0-8c206656efff&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-filter 1"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -87,11 +91,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;SOOBS420&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-extra"
+            argument = "&quot;shroud&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

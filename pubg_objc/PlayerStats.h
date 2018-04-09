@@ -25,6 +25,4 @@
 @property (nonatomic, assign) NSString *deathType;
 @property (nonatomic, assign) NSString *playerName;
 
-
-
 @end

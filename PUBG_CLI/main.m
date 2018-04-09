@@ -18,6 +18,12 @@ void print_seperator() {
     printf("[-----------------------------------------------------------------]\n");
 }
 
+NSString *timeFormatted(int totalSeconds) {
+    int seconds = totalSeconds % 60;
+    int minutes = (totalSeconds / 60) % 60;
+    return [NSString stringWithFormat:@"%02d minutes %02d seconds", minutes, seconds];
+}
+
 // Test methods
 NSString *testMatchIdentifier = nil;
 void player_query_tests() {
@@ -78,12 +84,11 @@ void match_query_tests() {
             printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tMatch duration === %i (~%d minutes)\n", (int)response.duration, ((int)response.duration/60));
-            Telemetry *telemetry = [[Telemetry alloc] init];
-            printf("\tTelemetry download === %s\n\n", [[telemetry getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tTelemetry download === %s\n\n", [[response getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
             // Get player stats
             PlayerStats *stats = [foundMatch getStatsForPlayer:@"xxxPabloEscoxxx"];
             printf("\tStats for %s in match %s\n", [stats.playerName cStringUsingEncoding:NSUTF8StringEncoding], [foundMatch.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
-            printf("\tTime survived === %i (~%d minutes)\n", (int)stats.timeSurvived, ((int)stats.timeSurvived/60));
+            printf("\tTime survived === %s\n", [timeFormatted((int)stats.timeSurvived) cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tWin place === %i/100\n", (int)stats.winPlace);
             printf("\tKill place === %i/100\n", (int)stats.killPlace);
             printf("\tKills === %i\n", (int)stats.kills);
@@ -128,7 +133,6 @@ void get_player_by_name(BOOL shouldPrintExtra, NSString *playerName) {
     if (playerName == nil) {
         return;
     }
-    printf("Running query now...\n");
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     [libPUBG getPlayerByName:playerName withCompletion:^(Player *response) {
         if (response.foundPlayer) {
@@ -137,15 +141,17 @@ void get_player_by_name(BOOL shouldPrintExtra, NSString *playerName) {
             printf("\tPlayer name === %s\n", [response.playerName cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tPlayer ident === %s\n", [response.playerIdentifier cStringUsingEncoding:NSUTF8StringEncoding]);
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-            NSDate *date = [dateFormat dateFromString:response.playerUpdateTimestamp];
+            NSDate *date = [libPUBG dateForString:response.playerUpdateTimestamp];
             [dateFormat setDateFormat:@"EEEE, d MMMM yyyy hh:mm:ss a"];
             printf("\tDate updated === %s\n", [[dateFormat stringFromDate:date] cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tAvailable matches === %i\n", (int)[response.playerMatches count]);
             if (shouldPrintExtra) {
-                printf("\tAll available matches;\n");
-                for (int i = 0; i < response.playerMatches.count; i++) {
-                    printf("\t\t#%i -- %s\n", i+1, [response.playerMatches[i][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
+                int matchCount = (int)response.playerMatches.count;
+                if (matchCount >= 25) {
+                    matchCount = 25;
+                }
+                for (int i = 0; i < matchCount; i++) {
+                    printf("\t#%i -- %s\n", i+1, [response.playerMatches[i][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
                 }
             } else {
                 printf("\t#1 Match ID === %s\n", [response.playerMatches[0][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -165,7 +171,6 @@ void get_player_by_identifier(BOOL shouldPrintExtra, NSString *playerIdentifier)
     if (playerIdentifier == nil) {
         return;
     }
-    printf("Running query now...\n");
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     [libPUBG getPlayerByID:playerIdentifier withCompletion:^(Player *response) {
         if (response.foundPlayer) {
@@ -180,8 +185,12 @@ void get_player_by_identifier(BOOL shouldPrintExtra, NSString *playerIdentifier)
             printf("\tDate updated === %s\n", [[dateFormat stringFromDate:date] cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tAvailable matches === %i\n", (int)[response.playerMatches count]);
             if (shouldPrintExtra) {
-                for (int i = 0; i < response.playerMatches.count; i++) {
-                    printf("\t#%i -- %s\n", i+1, [response.playerMatches[0][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
+                int matchCount = (int)response.playerMatches.count;
+                if (matchCount >= 25) {
+                    matchCount = 25;
+                }
+                for (int i = 0; i < matchCount; i++) {
+                    printf("\t#%i -- %s\n", i+1, [response.playerMatches[i][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
                 }
             } else {
                 printf("\t#1 Match ID === %s\n", [response.playerMatches[0][@"id"] cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -205,9 +214,8 @@ void get_match_by_identifier(NSString *matchID, BOOL printPlayeStats, NSString *
             print_seperator();
             printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
             printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
-            printf("\tMatch duration === %i (~%d minutes)\n", (int)response.duration, ((int)response.duration/60));
-            Telemetry *telemetry = [[Telemetry alloc] init];
-            printf("\tTelemetry download === %s\n", [[telemetry getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch duration === %s\n", [timeFormatted((int)response.duration) cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tTelemetry download === %s\n", [[response getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
             print_seperator();
             if (printPlayeStats && playerName != nil) {
                 // Get player stats
@@ -241,6 +249,95 @@ void get_match_by_identifier(NSString *matchID, BOOL printPlayeStats, NSString *
     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
 }
 
+void get_basic_telemetry(NSString *matchID) {
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    [libPUBG getMatchByID:matchID withCompletion:^(Match *response) {
+        if (response.foundMatch) {
+            printf("Match found!\n");
+            print_seperator();
+            printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch duration === %s\n", [timeFormatted((int)response.duration) cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tTelemetry download === %s\n", [[response getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
+            print_seperator();
+            Telemetry *telemetry = [[Telemetry alloc] init];
+            NSData *fileData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[response getTelemetryDownloadURLForMatch:response]]];
+            NSArray * json = (NSArray *)[NSJSONSerialization JSONObjectWithData:fileData options:kNilOptions error:nil];
+            printf("Nummber of events === %i\n", (int)json.count);
+            [telemetry setTelemetryData:json];
+            //Telemetry_Player_Killed *obj = [[Telemetry_Player_Killed alloc] init];
+            [telemetry parseTelemetryWithCompletion:^(NSDictionary *completion) {
+                printf("Epoch === %s\n", [[NSDateFormatter localizedStringFromDate:[telemetry epoch] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterFullStyle] cStringUsingEncoding:NSUTF8StringEncoding]);
+                int gameLasted = [[telemetry matchEnd] timeIntervalSinceDate:[telemetry matchStart]];
+                printf("Runtime === %s\n", [timeFormatted(gameLasted) cStringUsingEncoding:NSUTF8StringEncoding]);
+                printf("Medkits used === %d\n", [telemetry numberOfUses:kPUBG_Item_Heal_MedKit_C]);
+                printf("Firstaids used === %d\n", [telemetry numberOfUses:kPUBG_Item_Heal_FirstAid_C]);
+                printf("Bandages used === %d\n", [telemetry numberOfUses:kPUBG_Item_Heal_Bandage_C]);
+                printf("Painkillers  used === %d\n", [telemetry numberOfUses:kPUBG_Item_Boost_PainKiller_C]);
+                printf("Energy drinks used === %d\n", [telemetry numberOfUses:kPUBG_Item_Boost_EnergyDrink_C]);
+                dispatch_semaphore_signal(sema);
+            }];
+        } else {
+            printf("Match not found!\n");
+        }
+    }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+}
+void print_kill_event(NSDictionary *kill) {
+    print_seperator();
+    printf("Timestamp === %s\n", [(NSString *)kill[@"_D"] cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("Distance killed === %0.2fm\n",([kill[@"distance"] doubleValue]/100));
+    printf("Killer name === %s\n", [(NSString *)kill[@"killer"][@"name"] cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("\tHealth === %.2f\n", [kill[@"killer"][@"health"] doubleValue]);
+    printf("\tTeam ID === %i\n", [kill[@"killer"][@"teamId"] intValue]);
+    printf("\tRanking === %i\n", [kill[@"killer"][@"ranking"] intValue]);
+    printf("\nVictim name === %s\n", [(NSString *)kill[@"victim"][@"name"] cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("\tHealth === %.2f\n", [kill[@"victim"][@"health"] doubleValue]);
+    printf("\tTeam ID === %i\n", [kill[@"victim"][@"teamId"] intValue]);
+    printf("\tRanking === %i\n", [kill[@"victim"][@"ranking"] intValue]);
+    printf("\tCause of death === %s\n", [[libPUBG commonNameForDamageCauser:(NSString *)kill[@"damageCauserName"]] cStringUsingEncoding:NSUTF8StringEncoding]);
+    print_seperator();
+    [NSThread sleepForTimeInterval:1.000];
+}
+void playback_player_kills(NSString *matchID, BOOL printExtra, BOOL filterTag, NSString *playerName) {
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    [libPUBG getMatchByID:matchID withCompletion:^(Match *response) {
+        if (response.foundMatch) {
+            printf("Match found!\n");
+            print_seperator();
+            printf("\tMatch ID === %s\n", [response.matchID cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch mode === %s\n", [response.gameMode cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tMatch duration === %s\n", [timeFormatted((int)response.duration) cStringUsingEncoding:NSUTF8StringEncoding]);
+            printf("\tTelemetry download === %s\n", [[response getTelemetryDownloadURLForMatch:response] cStringUsingEncoding:NSUTF8StringEncoding]);
+            print_seperator();
+            Telemetry *telemetry = [[Telemetry alloc] init];
+            NSData *fileData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[response getTelemetryDownloadURLForMatch:response]]];
+            NSArray * json = (NSArray *)[NSJSONSerialization JSONObjectWithData:fileData options:kNilOptions error:nil];
+            printf("Nummber of events === %i\n", (int)json.count);
+            [telemetry setTelemetryData:json];
+            NSArray *killEvents = [telemetry allEventsForType:kPUBG_LogPlayerKill];
+            NSArray *matchStart = [telemetry allEventsForType:kPUBG_LogMatchStart];
+            if (printExtra) {
+                printf("Filtering by name enabled!\n");
+            }
+            NSDate *date = [libPUBG dateForString:matchStart[0][@"_D"]];
+            for (int i = 0; i < killEvents.count; i++) {
+                if ((printExtra && !filterTag && [(NSString *)killEvents[i][@"killer"][@"name"] isEqualToString:playerName]) || (printExtra && filterTag && [(NSString *)killEvents[i][@"victim"][@"name"] isEqualToString:playerName])) {
+                    int secondsPassed = [[libPUBG dateForString:(NSString *)killEvents[i][@"_D"]] timeIntervalSinceDate:date];
+                    printf("Kill %s into the match\n", [timeFormatted(secondsPassed) cStringUsingEncoding:NSUTF8StringEncoding]);
+                    print_kill_event(killEvents[i]);
+                } else if (!printExtra) {
+                    print_kill_event(killEvents[i]);
+                }
+            }
+            dispatch_semaphore_signal(sema);
+        } else {
+            printf("Match not found!\n");
+        }
+    }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+}
+
 void print_help() {
     printf("Available commands;\n");
     printf("[-help] Show this prompt\n");
@@ -250,12 +347,19 @@ void print_help() {
     printf("    Arguments;\n");
     printf("\t[-playerName \"player name\"] -- Find player by their name. (Required)\n");
     printf("\t[-playerIdentifier \"player identifier\"] -- Find player by their identifier. (Optional)\n");
-    printf("\t[-extra] -- Print out all matches availble for the player. (Optional)\n");
-    printf("[-findMatch] -- Find and print out general data for a match\n");
+    printf("\t[-extra] -- Print out the first 25 matches availble for the player. (Optional)\n");
+    printf("\n[-findMatch] -- Find and print out general data for a match\n");
     printf("    Arguments;\n");
-    printf("\t[-matchIdentifier \"match identifier\"] -- Target match identifier. (Required)\n");
+    printf("\t[-match \"match identifier\"] -- Target match identifier. (Required)\n");
     printf("\t[-playerName \"player name\"] -- Print out a player's stats in a match using their in-game nickname (Optional)\n");
-    printf("\t[-extra] -- Print all teammates for player (Optional, [-s] required!)\n");
+    printf("\t[-extra] -- Print all teammates for player (Optional)\n");
+    printf("\n-[telemetry] -- Find basic telemetry data\n");
+    printf("\t[-match \"match identifier\"] -- Target match identifier. (Required)\n");
+    printf("\n-[telemetryPlayKills] -- Print out telemetry kill data every 1 seconds.\n");
+    printf("\t[-match \"match identifier\"] -- Target match identifier. (Required)\n");
+    printf("\t[-playerName \"match identifier\"] -- Target match identifier. (Optional)\n");
+    printf("\t[-filter 0/1] -- 0 = filter by killer, 1 = filter by victim (Optional)\n");
+    
 }
 
 int main(int argc, const char * argv[]) {
@@ -272,12 +376,15 @@ int main(int argc, const char * argv[]) {
                 1) run run_main_tests()
                 2) run get_player_by_name() or get_player_by_identifier()
                 3) run get_match_by_identifier()
+                4) run get_basic_telemetry()
+                5) run playback_player_kills()
          */
         int methodIndex = 0;
         NSString *matchIdentifier = nil;
         NSString *playerName = nil;
         NSString *playerIdentifier = nil;
         BOOL printExtra = false;
+        BOOL printFilterTag = false; // false = filter by killer, true = filter by victim
         for (int i = 0; i < args.count; i++) {
             if ([args[i] isEqualToString:@"-key"]) { // check for our API key first
                 KEY = (NSString *)args[i+1];
@@ -285,7 +392,7 @@ int main(int argc, const char * argv[]) {
             if ([args[i] isEqualToString:@"-doTests"]) {
                 methodIndex = 1;
             }
-            if ([args[i] isEqualToString:@"-help"]) {
+            if ([args[i] isEqualToString:@"-help"] || [args[i] isEqualToString:@"-h"]) {
                 print_help();
                 return 0;
             }
@@ -295,6 +402,21 @@ int main(int argc, const char * argv[]) {
             if ([args[i] isEqualToString:@"-findMatch"]) {
                 methodIndex = 3;
             }
+            if ([args[i] isEqualToString:@"-telemetry"]) {
+                methodIndex = 4;
+            }
+            if ([args[i] isEqualToString:@"-telemetryPlayKills"]) {
+                methodIndex = 5;
+            }
+            if ([args[i] isEqualToString:@"-filter"]) {
+                if ((int)args[i+1] == 0) {
+                    printFilterTag = false;
+                } else if ((int)args[i+1] == 1) {
+                    printFilterTag = true;
+                }
+                printExtra = true;
+            }
+            
             if ([args[i] isEqualToString:@"-playerName"]) {
                 playerName = (NSString *)args[i+1];
             }
@@ -327,7 +449,14 @@ int main(int argc, const char * argv[]) {
                 printf("Searching for match with identifier %s\n", [matchIdentifier cStringUsingEncoding:NSUTF8StringEncoding]);
                 get_match_by_identifier(matchIdentifier, (playerName != nil) ? YES : NO, playerName, printExtra);
                 break;
+            case 4:
+                get_basic_telemetry(matchIdentifier);
+                break;
+            case 5:
+                playback_player_kills(matchIdentifier, printExtra, printFilterTag, playerName);
+                break;
             default:
+                print_help();
                 break;
         }
     }
